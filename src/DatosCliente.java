@@ -13,6 +13,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.LineBorder;
 
 public class DatosCliente extends JFrame {
 
@@ -23,15 +26,19 @@ public class DatosCliente extends JFrame {
 	private JLabel lblDireccion;
 	private JTextField textfDir;
 	private Menu menu = new Menu();
+	
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public DatosCliente() {
+		setResizable(false);
 		setTitle("Datos - By Kemyl, Melwink, Cesar");
 		setBackground(new Color(255, 255, 255));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 513, 387);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 0, 0));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -53,6 +60,7 @@ public class DatosCliente extends JFrame {
 		panel.add(lblNewLabel);
 		
 		textfNombre = new JTextField();
+		textfNombre.setBorder(new LineBorder(new Color(192, 192, 192), 1, true));
 		textfNombre.setBounds(135, 112, 303, 20);
 		panel.add(textfNombre);
 		textfNombre.setColumns(10);
@@ -65,6 +73,7 @@ public class DatosCliente extends JFrame {
 		panel.add(lblNmero);
 		
 		textfNumero = new JTextField();
+		textfNumero.setBorder(new LineBorder(new Color(192, 192, 192), 1, true));
 		textfNumero.setColumns(10);
 		textfNumero.setBounds(135, 158, 303, 20);
 		panel.add(textfNumero);
@@ -77,6 +86,7 @@ public class DatosCliente extends JFrame {
 		panel.add(lblDireccion);
 		
 		textfDir = new JTextField();
+		textfDir.setBorder(new LineBorder(new Color(192, 192, 192), 1, true));
 		textfDir.setColumns(10);
 		textfDir.setBounds(145, 205, 293, 20);
 		panel.add(textfDir);
