@@ -4,17 +4,16 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.awt.Font;
-import java.awt.Image;
-
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.awt.event.ActionEvent;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.LineBorder;
 
 public class DatosCliente extends JFrame {
@@ -26,6 +25,9 @@ public class DatosCliente extends JFrame {
 	private JLabel lblDireccion;
 	private JTextField textfDir;
 	private Menu menu = new Menu();
+	
+	String url = "jdbc:mysql://127.0.0.1/restarantejava";
+	String user = "root";
 	
 	
 
@@ -95,14 +97,28 @@ public class DatosCliente extends JFrame {
 		btnAcceder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (!textfNombre.getText().isBlank() && !textfNumero.getText().isBlank() && !textfDir.getText().isBlank()) {
-					menu.setVisible(true);
-					dispose();
-					
+					try {
+						Connection conexion = DriverManager.getConnection (url, user, "");
+						Class.forName("com.mysql.jdbc.Driver");
+						System.out.println("Conexion a la Base de Datos exitosa");
+						
+						Statement statement = conexion.createStatement();
+						statement.executeUpdate("INSERT INTO Cliente (Nombre, Telefono, Direccion)"
+								+ "VALUES ('" + textfNombre.getText() + "', '" + textfNumero.getText() + "', '" + textfDir.getText()
+								+ "')");
+						conexion.close();
+						menu.setVisible(true);
+						dispose();
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} catch (ClassNotFoundException e2) {
+						// TODO Auto-generated catch block
+						e2.printStackTrace();
+					}
 				} else {
 					JOptionPane.showMessageDialog(panel, "Complete todos los campos requeridos");
 				}
-				
-				
 			}
 		});
 		btnAcceder.setBackground(new Color(7, 132, 181));
@@ -112,9 +128,10 @@ public class DatosCliente extends JFrame {
 		panel.add(btnAcceder);
 		
 		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(DatosCliente.class.getResource("/com/Icons/DatosCliente.jpg")));
 		lblFondo.setBounds(0, 0, 500, 350);
 		panel.add(lblFondo);
-		lblFondo.setIcon(new ImageIcon(DatosCliente.class.getResource("/com/Icons/DatosCliente.jpeg")));
+		
 		lblFondo.setForeground(Color.WHITE);
 		lblFondo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblFondo.setBackground(Color.WHITE);
