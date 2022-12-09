@@ -18,6 +18,10 @@ import javax.swing.border.LineBorder;
 
 public class DatosCliente extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textfNombre;
 	private JLabel lblNmero;
@@ -107,8 +111,7 @@ public class DatosCliente extends JFrame {
 								+ "VALUES ('" + textfNombre.getText() + "', '" + textfNumero.getText() + "', '" + textfDir.getText()
 								+ "')");
 						conexion.close();
-						menu.setVisible(true);
-						dispose();
+						
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -116,6 +119,8 @@ public class DatosCliente extends JFrame {
 						// TODO Auto-generated catch block
 						e2.printStackTrace();
 					}
+					menu.setVisible(true);
+					dispose();
 				} else {
 					JOptionPane.showMessageDialog(panel, "Complete todos los campos requeridos");
 				}

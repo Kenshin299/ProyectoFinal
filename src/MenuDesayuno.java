@@ -1,6 +1,5 @@
 import javax.swing.JPanel;
 import java.awt.Color;
-import java.awt.Rectangle;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JComboBox;
@@ -9,7 +8,6 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
@@ -20,18 +18,21 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 
 public class MenuDesayuno extends JPanel implements CambiarPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String url = "jdbc:mysql://127.0.0.1/restarantejava";
 	String user = "root";
 	double total = 0;
 	double total1 = 0;
 	double total2 = 0;
 	double total3 = 0;
-	
-	private double monto;
 
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public MenuDesayuno() {
 		
 		setBackground(new Color(17, 17, 17));
@@ -223,7 +224,7 @@ public class MenuDesayuno extends JPanel implements CambiarPanel {
 		lblPlatoPrincipal_1_2.setBounds(50, 410, 213, 54);
 		add(lblPlatoPrincipal_1_2);
 		
-		monto = total + total1 + total2 + total3;
+	
 		
 		JButton btnNewButton = new JButton("<- Atras");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -239,6 +240,7 @@ public class MenuDesayuno extends JPanel implements CambiarPanel {
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Orden orden = new Orden();
+				double monto = total + total1 + total2 + total3;
 				try {
 					Connection conexion = DriverManager.getConnection (url,user,"");
 					Class.forName("com.mysql.jdbc.Driver");
@@ -270,10 +272,6 @@ public class MenuDesayuno extends JPanel implements CambiarPanel {
 		
 	
 
-	}
-	
-	public double getMonto() {
-		return monto;
 	}
 
 	@Override

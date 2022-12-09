@@ -7,22 +7,21 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.JTextPane;
 
 public class Orden extends JPanel implements CambiarPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String url = "jdbc:mysql://127.0.0.1/restarantejava";
 	String user = "root";
 	MenuDesayuno menu = new MenuDesayuno();
-	double pagar = menu.getMonto();
 	
 	/**
 	 * Create the panel.
@@ -31,9 +30,7 @@ public class Orden extends JPanel implements CambiarPanel {
 		setBackground(new Color(17, 17, 17));
 		setBounds(0, 0, 630, 700);
 		setLayout(null);
-		
-		
-		
+
 		JLabel lbOrden = new JLabel("Confirmación de Factura");
 		lbOrden.setFont(new Font("Tahoma", Font.BOLD, 24));
 		lbOrden.setForeground(new Color(255, 255, 255));
@@ -62,12 +59,7 @@ public class Orden extends JPanel implements CambiarPanel {
 				direccion = rs.getString("Direccion");
 				monto = rs.getString("Monto");
 			}
-			ResultSet rs1 = statement.executeQuery("SELECT Monto FROM Cliente ORDER BY IdCliente DESC LIMIT 1");
-			while (rs1.next()) {
-				monto = rs1.getString("Monto");
-			}
-			System.out.print(monto);
-			System.out.print(pagar);
+			System.out.println(monto);
 			conexion.close();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -77,13 +69,13 @@ public class Orden extends JPanel implements CambiarPanel {
 			e2.printStackTrace();
 		}
 		txtpnOrden.setText("************************************************" +
-           "\n\t       Restaurante\t" +
+           "\n\t         Restaurante Stark\t" +
            "\n************************************************" +
            "\n Nombre:- " + nombre +
            "\n Numero de telefono:- " + telefono +
            "\n Direccion:- " + direccion +
            "\n************************************************" +
-           "\n  Total a Pagar: " + monto + pagar);
+           "\n  Total a Pagar: " + monto);
 		
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
@@ -96,9 +88,7 @@ public class Orden extends JPanel implements CambiarPanel {
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton.setBounds(46, 621, 144, 48);
 		add(btnNewButton);
-		
-		
-		
+
 		JButton btnConfirmar = new JButton("Confirmar");
 		btnConfirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

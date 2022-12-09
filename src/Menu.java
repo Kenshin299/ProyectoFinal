@@ -12,6 +12,10 @@ import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame implements CambiarPanel{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	public JPanel panel;
 	/**

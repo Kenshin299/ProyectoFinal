@@ -1,5 +1,3 @@
-import java.sql.*;
-
 import javax.swing.JPanel;
 
 public interface CambiarPanel {

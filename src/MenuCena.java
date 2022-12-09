@@ -19,6 +19,10 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
 public class MenuCena extends JPanel implements CambiarPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String url = "jdbc:mysql://127.0.0.1/restarantejava";
 	String user = "root";
 	double total = 0;
@@ -29,6 +33,7 @@ public class MenuCena extends JPanel implements CambiarPanel{
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public MenuCena() {
 		setBackground(new Color(17, 17, 17));
 		setBounds(0, 0, 630, 700);

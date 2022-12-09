@@ -19,25 +19,21 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
 public class MenuAlmuerzo extends JPanel implements CambiarPanel{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	String url = "jdbc:mysql://127.0.0.1/restarantejava";
 	String user = "root";
 	double total = 0;
 	double total1 = 0;
 	double total2 = 0;
 	double total3 = 0;
-	double monto;
-
-	public double getMonto() {
-		return monto;
-	}
-
-	public void setMonto(double monto) {
-		this.monto = monto;
-	}
 
 	/**
 	 * Create the panel.
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public MenuAlmuerzo() {
 		setBackground(new Color(17, 17, 17));
 		setBounds(0, 0, 630, 700);
@@ -237,7 +233,7 @@ public class MenuAlmuerzo extends JPanel implements CambiarPanel{
 		btnContinuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Orden orden = new Orden();
-				monto = total + total1 + total2 + total3;
+				double monto = total + total1 + total2 + total3;
 				try {
 					Connection conexion = DriverManager.getConnection (url,user,"");
 					Class.forName("com.mysql.jdbc.Driver");
@@ -278,6 +274,5 @@ public class MenuAlmuerzo extends JPanel implements CambiarPanel{
 		add(p);
 		revalidate();
 		repaint();	
-		
 	}
 }
